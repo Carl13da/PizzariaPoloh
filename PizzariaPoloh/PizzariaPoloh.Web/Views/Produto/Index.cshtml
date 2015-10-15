@@ -1,0 +1,29 @@
+﻿@model IEnumerable<PizzariaPoloh.Dominio.Entidades.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Produtos</h2>
+<p>
+    @Html.ActionLink("Criar Novo Produto", "Criar")
+</p>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Categoria</th>
+    </tr>
+
+    @foreach (var produto in Model)
+    {
+        <tr>
+            <td>@Html.TextBoxFor(Model => produto.ProdutoId)</td>
+            <td>@Html.TextBoxFor(Model => produto.Nome)</td>
+            <td>@Html.TextBoxFor(Model => produto.Preco)</td>
+            <td>@Html.TextBoxFor(Model => produto.Categoria)</td>
+        </tr>
+    }
+</table>
+
