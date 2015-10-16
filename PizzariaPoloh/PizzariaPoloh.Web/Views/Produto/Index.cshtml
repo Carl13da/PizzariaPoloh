@@ -1,29 +1,42 @@
 ﻿@model IEnumerable<PizzariaPoloh.Dominio.Entidades.Produto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cardápio";
 }
 
 <h2>Produtos</h2>
 <p>
-    @Html.ActionLink("Criar Novo Produto", "Criar")
+    <button class="btn btn-success" onclick="finalizaPedido()">Finalizar Pedido</button>
 </p>
-<table>
+
+<table class="table">
     <tr>
-        <th>Id</th>
         <th>Nome</th>
         <th>Preço</th>
-        <th>Categoria</th>
+        <th>Qtd</th>
+        <th></th>
     </tr>
 
     @foreach (var produto in Model)
     {
         <tr>
-            <td>@Html.TextBoxFor(Model => produto.ProdutoId)</td>
-            <td>@Html.TextBoxFor(Model => produto.Nome)</td>
-            <td>@Html.TextBoxFor(Model => produto.Preco)</td>
-            <td>@Html.TextBoxFor(Model => produto.Categoria)</td>
+            <td>@Html.DisplayFor(Model => produto.Nome)</td>
+            <td>R$ @Html.DisplayFor(Model => produto.Preco)</td>
+            <td>
+                <button class="btn btn-primary btn-sm" onclick="removeQuantidade(@(produto.ProdutoId)); atualizaPreco(-@produto.Preco)">-</button>
+                <span data-prod-id="@(produto.ProdutoId)">0</span>
+                <button class="btn btn-primary btn-sm" onclick="adicionaQuantidade(@(produto.ProdutoId)); atualizaPreco(@produto.Preco)">+</button>
+            </td>
         </tr>
     }
+
+    <tr>
+        <td><strong>Total</strong></td>
+        <td><strong id="totalPedido">R$ 0.00</strong></td>
+        <td></td>
+    </tr>
 </table>
 
+@section scripts {
+    <script src="~/Scripts/index.js"></script>
+}

@@ -1,20 +1,16 @@
 ﻿using PizzariaPoloh.Dominio.Entidades;
-using System;
+using PizzariaPoloh.Dominio.Repositorio.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzariaPoloh.Dominio.Repositorio
 {
-    public class ProdutosRepositorio
+    public class ProdutoRepositorio : IProdutoRepositorio
     {
         private readonly PizzariaPolohDBContext _context = new PizzariaPolohDBContext();
-        public IEnumerable<Produto> Produtos
-        {
-            get { return _context.Produtos;  }
-        }
-        
 
+        public IEnumerable<Produto> PegaProdutos()
+        {
+            return _context.Produtos;
+        }
     }
 }

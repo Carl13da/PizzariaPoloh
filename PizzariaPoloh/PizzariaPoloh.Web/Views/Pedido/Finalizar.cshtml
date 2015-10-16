@@ -1,0 +1,11 @@
+﻿@model IEnumerable<PizzariaPoloh.Web.Models.ItemPedidoViewModel>
+@{
+    ViewBag.Title = "Finalizar";
+}
+
+<h2>Finalizar</h2>
+
+@foreach (var produto in Model)
+{
+    <div>@produto.ProdutoId</div>
+}

@@ -1,19 +1,21 @@
-﻿using PizzariaPoloh.Dominio.Repositorio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using PizzariaPoloh.Dominio.Repositorio.Interfaces;
 using System.Web.Mvc;
 
 namespace PizzariaPoloh.Web.Controllers
 {
     public class ProdutoController : Controller
     {
-        private ProdutosRepositorio _repositorio;
+        private IProdutoRepositorio _repositorio;
+
+        public ProdutoController(IProdutoRepositorio repositorio)
+        {
+            _repositorio = repositorio;
+        }
+
         public ActionResult Index()
         {
-            _repositorio = new ProdutosRepositorio();
-            var produtos = _repositorio.Produtos.Take(10);
+            var produtos = _repositorio.PegaProdutos();
+
             return View(produtos);
         }
     }

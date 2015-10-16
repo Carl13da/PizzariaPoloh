@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data.Entity;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using PizzariaPoloh.Dominio.Entidades;
 
 namespace PizzariaPoloh.Dominio.Repositorio
@@ -12,7 +7,17 @@ namespace PizzariaPoloh.Dominio.Repositorio
     {
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<ItemPedido> ItensPedido { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Produto>().ToTable("Produto");
+            modelBuilder.Entity<Cliente>().ToTable("Cliente");
+            modelBuilder.Entity<Pedido>().ToTable("Pedido");
+            modelBuilder.Entity<ItemPedido>().ToTable("ItemPedido");
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
